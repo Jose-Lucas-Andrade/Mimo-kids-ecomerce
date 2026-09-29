@@ -1,0 +1,18 @@
+services:
+  papelariaonline:
+    image: papelariaonline
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: file:/usr/src/app/data/shop.db
+    ports:
+      - 3000:3000
+    volumes:
+      - shop-data:/usr/src/app/data
+
+volumes:
+  shop-data:

@@ -1,0 +1,1 @@
+ALTER TABLE "Product" ADD COLUMN "shippingWeightKg" REAL NOT NULL DEFAULT 0.3;

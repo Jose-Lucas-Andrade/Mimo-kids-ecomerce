@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id    Int      @id @default(autoincrement())
+  name  String
+  slug  String   @unique
+  products Product[]
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  price       Float
+  imageUrl    String
+  stock       Int      @default(0)
+  barcode     String?  @unique
+  unitsPerPackage Int  @default(1)
+  shippingWeightKg Float @default(0.3)
+  active      Boolean  @default(true)
+  categoryId  Int?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  createdAt   DateTime @default(now())
+
+  OrderItem OrderItem[]
+}
+
+model Order {
+  id         Int        @id @default(autoincrement())
+  publicToken String?   @unique
+  name       String
+  email      String
+  cep        String
+  address    String
+  number     String?
+  complement String?
+  neighborhood String?
+  city       String
+  state      String
+  items      OrderItem[]
+  subtotal   Float
+  shipping   Float
+  total      Float
+  createdAt  DateTime   @default(now())
+  status     String     @default("PENDING")
+  paymentProvider String?
+  paymentStatus String? @default("PENDING")
+  paymentId String?
+  paymentPreferenceId String?
+  merchantOrderId String?
+  trackingCode String?
+  trackingUrl  String?
+  shippedAt    DateTime?
+  lastEmailSentAt DateTime?
+  orderReminderSentAt DateTime?
+  stockDeductedAt DateTime?
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  orderId   Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+  name      String
+  qty       Int
+  price     Float
+}
