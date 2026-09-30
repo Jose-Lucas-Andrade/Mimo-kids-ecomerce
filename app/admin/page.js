@@ -16,6 +16,12 @@ export default async function AdminHome(){
           <p className="max-w-2xl text-[color:var(--muted)]">
             Acompanhe produtos, pedidos, rastreio, estoque e andamento da loja em um unico lugar.
           </p>
+          <a className="btn btn-primary mt-2 inline-flex" href="/admin/products/new">
+            Cadastrar produto / escanear código
+          </a>
+          <p className="max-w-2xl text-xs text-[color:var(--muted)]">
+            Conecte um leitor USB ou Bluetooth que funcione como teclado e escaneie no campo “Código de barras”.
+          </p>
         </div>
       </section>
       <div className="grid gap-4 sm:grid-cols-2">

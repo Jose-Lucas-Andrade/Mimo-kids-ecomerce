@@ -30,7 +30,10 @@ export default async function AdminProducts({ searchParams }){
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">Produtos</h1>
-        <a href="/admin/products/new" className="btn btn-primary">Novo produto</a>
+        <a href="/admin/products/new" className="btn btn-primary">Cadastrar produto / escanear código</a>
+      </div>
+      <div className="card border-sky-200 bg-sky-50 p-4 text-sm text-sky-950">
+        Para cadastrar com leitor, abra o cadastro, clique no campo de código de barras e escaneie. O leitor USB/Bluetooth precisa funcionar como teclado; a busca de dados é opcional. Se já tem o produto, use a busca abaixo para localizar pelo código.
       </div>
       <form className="card p-4" action="/admin/products" method="get">
         <div className="flex flex-col gap-3 sm:flex-row">
